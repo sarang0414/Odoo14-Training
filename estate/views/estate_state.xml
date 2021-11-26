@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="estate_state_view_form" model="ir.ui.view">
+        <field name="name">estate.state.form</field>
+        <field name="model">estate.state</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h2>State where the land resides:</h2><br/>
+                    <group>
+                        <group>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_state_view_tree" model="ir.ui.view">
+        <field name="name">estate.state.tree</field>
+        <field name="model">estate.state</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="estate_state_action" model="ir.actions.act_window">
+        <field name="name">State</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.state</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                Deatils of estates in specified states
+                <br/>
+                You can check the places Here
+            </p>
+        </field>
+    </record>
+
+
+
+    <menuitem id="estate_state_root"
+              name="State"
+              parent="estate_details_adv"
+              action="estate_state_action"
+              sequence="7"/>
+
+
+</odoo>

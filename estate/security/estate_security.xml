@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="estate_security_details" model="res.groups">
+        <field name="name">Estate Authenticated Users</field>
+    </record>
+</odoo>

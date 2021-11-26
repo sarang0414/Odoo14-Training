@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="estate_employee_view_tree" model="ir.ui.view">
+        <field name="name">estate.employee.tree</field>
+        <field name="model">estate.employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="estate_name_id"/>
+                <field name="employee_name"/>
+                <field name="experience"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_employee_view_form" model="ir.ui.view">
+        <field name="name">estate.employee.form</field>
+        <field name="model">estate.employee</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h2>Employee Details :</h2><br/>
+                    <group>
+                        <group>
+                            <field name="employee_name"/>
+                            <field name="experience"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_tag_view_tree" model="ir.ui.view">
+        <field name="name">estate.tag.tree</field>
+        <field name="model">estate.tag</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_tag_view_form" model="ir.ui.view">
+        <field name="name">estate.tag.form</field>
+        <field name="model">estate.tag</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h2>Tags on Land Types :</h2><br/>
+                    <group>
+                        <group>
+                            <field name="tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_category_view_form" model="ir.ui.view">
+        <field name="name">estate.category.form</field>
+        <field name="model">estate.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h2>Land Category Details :</h2><br/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="area"/>
+                            <field name="estate_state_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_category_view_tree" model="ir.ui.view">
+        <field name="name">estate.category.tree</field>
+        <field name="model">estate.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="area"/>
+                <field name="estate_state_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_details_view_tree" model="ir.ui.view">
+        <field name="name">estate.details.tree</field>
+        <field name="model">estate.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="place"/>
+                <field name="details"/>
+                <field name="price"/>
+                <field name="estate_category_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_details_view_form" model="ir.ui.view">
+        <field name="name">estate.details.form</field>
+        <field name="model">estate.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h2>Land Details :</h2><br/>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="Estate Name..."/>
+                            <field name="place"/>
+                            <field name="details"/>
+                            <field name="price"/>
+                            <field name="estate_category_id"/>
+                            <field name="estate_tag_ids" widget="many2many_tags"/>
+                            <field name="estate_employee_ids"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="estate_details_action" model="ir.actions.act_window">
+        <field name="name">Estate Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.details</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                Please Check the Details of the Real estate Management
+                <br/>
+                You can check the places Here
+            </p>
+        </field>
+    </record>
+
+    <record id="estate_category_action" model="ir.actions.act_window">
+        <field name="name">Estate Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.category</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                Real Estate Management System
+                <br/>
+                You can know the Land Category Details
+            </p>
+        </field>
+    </record>
+
+    <record id="estate_tag_action" model="ir.actions.act_window">
+        <field name="name">Estate Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.tag</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                Real Estate Management System
+                <br/>
+                You can know the Land Category Tag Details
+            </p>
+        </field>
+    </record>
+
+     <record id="estate_employee_action" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.employee</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                Real Estate Management System
+                <br/>
+                Estate Employee Details
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="estate_details_root"
+              name="Real Estate"
+              sequence="7"/>
+
+    <menuitem id="estate_details_adv"
+              name="Land Details"
+              parent="estate_details_root"
+              sequence="7"/>
+
+    <menuitem id="estate_details_settings_demo"
+              name="Land Category"
+              action="estate_category_action"
+              parent="estate_details_root"
+              sequence="7"/>
+
+    <menuitem id="estate_employee_root"
+              name="Employees"
+              parent="estate_details_root"
+              action="estate_employee_action"
+              sequence="7"/>
+
+    <menuitem id="estate_tag_root"
+              name="Tags"
+              action="estate_tag_action"
+              parent="estate_details_settings_demo"
+              sequence="7"/>
+
+    <menuitem id="estate_details_settings"
+              name="View Details"
+              action="estate_details_action"
+              parent="estate_details_adv"
+              sequence="7"/>
+
+</odoo>

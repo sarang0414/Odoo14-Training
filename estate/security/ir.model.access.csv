@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_estate_details,access.estate.details,model_estate_details,estate.estate_security_details,1,1,1,1
+access_estate_category,access_estate_category,model_estate_category,estate.estate_security_details,1,1,1,1
+access_estate_state,access_estate_state,model_estate_state,estate.estate_security_details,1,1,1,1
+access_estate_tag,access_estate_tag,model_estate_tag,estate.estate_security_details,1,1,1,1
+access_estate_employee,access_estate_employee,model_estate_employee,estate.estate_security_details,1,1,1,1
+
