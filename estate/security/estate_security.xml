@@ -3,4 +3,10 @@
     <record id="estate_security_details" model="res.groups">
         <field name="name">Estate Authenticated Users</field>
     </record>
+
+    <record model="ir.rule" id="estate_user_record_rule">
+        <field name="name">Estate User Rules</field>
+        <field name="model_id" ref="model_estate_owner"/>
+        <field name="domain_force">[('user_id','=',user.id)]</field>
+    </record>
 </odoo>

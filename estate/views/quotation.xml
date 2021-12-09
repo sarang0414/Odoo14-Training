@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="estate_quotation_action" model="ir.actions.act_window">
+        <field name="name">Quotations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.quotation</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                qoudhnuo
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="estate_quotation_root"
+              name="Quotations"
+              parent="estate_details_adv"
+              action="estate_quotation_action"
+              sequence="7"/>
+
+
+</odoo>

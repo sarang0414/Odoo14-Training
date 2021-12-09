@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_set_age_form" model="ir.ui.view">
+        <field name="name">demo.data.set.age</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="demo_module1.demo_permanent_customer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='permanent_customer']" position="after">
+                <field name="set_date_of_birth"/>
+                <field name="set_age"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="demo_set_age_form_sale_order" model="ir.ui.view">
+        <field name="name">demo.data.set.age_sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="set_age_sales"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+
+

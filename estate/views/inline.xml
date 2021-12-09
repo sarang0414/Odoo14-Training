@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- ****************************Inline Tree view inside Form view *******************************************-->
+
+    <record id="inline_model_form" model="ir.ui.view">
+        <field name="name">estate.category.form</field>
+        <field name="model">inline.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="name"/>
+                    <field name="line_ids">
+                        <tree>
+                            <field name="field_1"/>
+                            <field name="field_2"/>
+                            <field name="field_3"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="inline_model_action" model="ir.actions.act_window">
+        <field name="name">Inline</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">inline.model</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                Inline
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="inline_model_root"
+              name="Inline Views"
+              parent="estate_details_adv"
+              action="inline_model_action"
+              sequence="7"/>
+
+</odoo>

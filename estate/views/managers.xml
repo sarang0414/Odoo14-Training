@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="estate_managers_form_view" model="ir.ui.view">
+        <field name="name">estate.managers.form</field>
+        <field name="model">estate.managers</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_create_records" class="btn-danger" type="object"
+                            string="Create Multiple Records"></button>
+                    <button name="action_tutorial_orm_methods" class="btn-danger" type="object"
+                            string="Learn ORM Methods"></button>
+                </header>
+                <sheet>
+                    <h2>Land Managers Details :</h2>
+                    <br/>
+                    <group>
+                        <group>
+                            <field name="manager_name"/>
+                            <field name="manager_join_date"/>
+                            <field name="manager_age"/>
+                            <field name="manager_resign_date"/>
+                            <field name="manager_salary"/>
+                            <field name="manager_gender"/>
+                            <field name="estate_name_manager"/>
+                            <field name="manager_description"/>
+                            <field name="manager_age_group"/>
+                            <field name="manager_base_salary"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_managers_tree_view" model="ir.ui.view">
+        <field name="name">estate.managers.tree</field>
+        <field name="model">estate.managers</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="manager_name"/>
+                <field name="manager_join_date"/>
+                <field name="manager_age"/>
+                <field name="manager_resign_date"/>
+                <field name="manager_salary"/>
+                <field name="manager_gender"/>
+                <field name="estate_name_manager"/>
+                <field name="manager_description"/>
+                <field name="manager_age_group"/>
+                <field name="manager_base_salary"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_managers_action" model="ir.actions.act_window">
+        <field name="name">Manager</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.managers</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'default_manager_gender': 'male'}</field>
+        <field name="help" type="html">
+            <p>
+                Manager Details
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="estate_managers_root"
+              name="Managers"
+              parent="estate_details_adv"
+              action="estate_managers_action"
+              sequence="7"/>
+
+
+</odoo>

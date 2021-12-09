@@ -19,7 +19,8 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <h2>Employee Details :</h2><br/>
+                    <h2>Employee Details :</h2>
+                    <br/>
                     <group>
                         <group>
                             <field name="employee_name"/>
@@ -47,10 +48,12 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <h2>Tags on Land Types :</h2><br/>
+                    <h2>Tags on Land Types :</h2>
+                    <br/>
                     <group>
                         <group>
                             <field name="tags"/>
+                            <field name="color"/>
                         </group>
                     </group>
                 </sheet>
@@ -64,7 +67,8 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <h2>Land Category Details :</h2><br/>
+                    <h2>Land Category Details :</h2>
+                    <br/>
                     <group>
                         <group>
                             <field name="name"/>
@@ -93,12 +97,13 @@
         <field name="name">estate.details.tree</field>
         <field name="model">estate.details</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree multi_edit="1">
                 <field name="name"/>
                 <field name="place"/>
                 <field name="details"/>
                 <field name="price"/>
                 <field name="estate_category_id"/>
+                <field name="estate_employee_ids"/>
             </tree>
         </field>
     </record>
@@ -109,19 +114,35 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <h2>Land Details :</h2><br/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(estate.estate_employee_action)d" type="action" class="oe_stat_button" icon="fa-user">
+                            <field name="estate_employee_count" widget="statinfo" string="Employees"/>
+                        </button>
+                    </div>
+                    <h2>Land Details :</h2>
+                    <br/>
                     <group>
                         <group>
                             <field name="name" placeholder="Estate Name..."/>
+                            <field name="owners" string="Estate Owner"/>
                             <field name="place"/>
                             <field name="details"/>
                             <field name="price"/>
+                            <field name="offer_price"/>
                             <field name="estate_category_id"/>
-                            <field name="estate_tag_ids" widget="many2many_tags"/>
+                            <field name="estate_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="estate_employee_ids"/>
                         </group>
                     </group>
                 </sheet>
+                <tree>
+                    <field name="name"/>
+                    <field name="place"/>
+                    <field name="details"/>
+                    <field name="price"/>
+                    <field name="estate_category_id"/>
+                    <field name="estate_employee_ids"/>
+                </tree>
             </form>
         </field>
     </record>
@@ -169,10 +190,11 @@
         </field>
     </record>
 
-     <record id="estate_employee_action" model="ir.actions.act_window">
+    <record id="estate_employee_action" model="ir.actions.act_window">
         <field name="name">Employees</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">estate.employee</field>
+        <field name="domain">[('estate_name_id', '=', 'active_id')]</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="help" type="html">
             <p>
@@ -208,7 +230,7 @@
     <menuitem id="estate_tag_root"
               name="Tags"
               action="estate_tag_action"
-              parent="estate_details_settings_demo"
+              parent="estate_details_root"
               sequence="7"/>
 
     <menuitem id="estate_details_settings"

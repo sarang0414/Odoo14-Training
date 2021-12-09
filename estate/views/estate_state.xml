@@ -6,8 +6,12 @@
         <field name="model">estate.state</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button type="action" name="%(estate.estate_tag_action)d" class="btn-primary" string="Tags"/>
+                </header>
                 <sheet>
-                    <h2>State where the land resides:</h2><br/>
+                    <h2>State where the land resides:</h2>
+                    <br/>
                     <group>
                         <group>
                             <field name="state"/>
@@ -29,7 +33,6 @@
     </record>
 
 
-
     <record id="estate_state_action" model="ir.actions.act_window">
         <field name="name">State</field>
         <field name="type">ir.actions.act_window</field>
@@ -43,7 +46,6 @@
             </p>
         </field>
     </record>
-
 
 
     <menuitem id="estate_state_root"

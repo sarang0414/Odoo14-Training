@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <record id="deligation_view_form" model="ir.ui.view">-->
+<!--        <field name="name">deligation.form</field>-->
+<!--        <field name="model">deligation.demo</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <sheet>-->
+<!--                    <h2>Deligation demo:</h2>-->
+<!--                    <br/>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="state_id"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="deligation_action" model="ir.actions.act_window">
+        <field name="name">Deligations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">deligation.demo</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p>
+                deli
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="deligation_root"
+              name="Deligation Demo"
+              parent="estate_details_adv"
+              action="deligation_action"
+              sequence="7"/>
+
+
+</odoo>
