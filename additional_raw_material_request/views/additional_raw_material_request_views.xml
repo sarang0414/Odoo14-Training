@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_additional_raw_material_request_form" model="ir.ui.view">
+        <field name="name">additional.raw.material.request.form</field>
+        <field name="model">additional.raw.material.request</field>
+        <field name="arch" type="xml">
+            <form string="Additional Raw Material Request">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_issue" string="Issue" type="object" invisible="state != 'confirm'" class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state not in ['draft', 'confirm']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,issued"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="mrp_production_id" readonly="state != 'draft'"/>
+                            <field name="authorized_user_id" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="product_code"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Details">
+                            <field name="request_details" readonly="state != 'draft'"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_additional_raw_material_request_tree" model="ir.ui.view">
+        <field name="name">additional.raw.material.request.list</field>
+        <field name="model">additional.raw.material.request</field>
+        <field name="arch" type="xml">
+            <list string="Additional Raw Material Request">
+                <field name="name"/>
+                <field name="mrp_production_id"/>
+                <field name="authorized_user_id"/>
+                <field name="state" widget="badge" decoration-success="state == 'issued'" decoration-info="state == 'confirm'" decoration-muted="state == 'draft'" decoration-danger="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_additional_raw_material_request" model="ir.actions.act_window">
+        <field name="name">Additional Raw Material Request</field>
+        <field name="res_model">additional.raw.material.request</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_additional_raw_material_request"
+              name="Additional Raw Material Request"
+              parent="mrp.menu_mrp_manufacturing"
+              action="action_additional_raw_material_request"
+              sequence="20"/>
+</odoo>

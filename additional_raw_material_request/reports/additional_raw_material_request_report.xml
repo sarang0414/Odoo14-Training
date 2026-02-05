@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_additional_raw_material_request" model="report.paperformat">
+        <field name="name">Additional Raw Material Request Paper Format</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">50</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_additional_raw_material_request" model="ir.actions.report">
+        <field name="name">Raw Material Request</field>
+        <field name="model">additional.raw.material.request</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">additional_raw_material_request.report_additional_raw_material_request_document</field>
+        <field name="report_file">additional_raw_material_request.report_additional_raw_material_request_document</field>
+        <field name="print_report_name">'Raw Material Request - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_additional_raw_material_request"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_additional_raw_material_request"/>
+    </record>
+
+    <template id="report_additional_raw_material_request_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="header">
+                        <style>
+                            .table-bordered {
+                                border: 1px solid black;
+                            }
+                            .table-bordered th, .table-bordered td {
+                                border: 1px solid black;
+                            }
+                        </style>
+                        <div class="text-center mb-4">
+                            <h4><strong><span t-field="o.company_id.name"/></strong></h4>
+                        </div>
+                        
+                        <table class="table table-bordered mb-4">
+                            <tr>
+                                <td colspan="2">Manual Title : Operation Manual</td>
+                                <td>Doc Ref : F09/2</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Document Title : Production Adjustment Instructions And Raw Material Request Form</td>
+                                <td>Page : <span class="page"/> of <span class="topage"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="page">
+                        <div class="mb-4">
+                            <p>
+                                Batch Number <u><span t-field="o.mrp_production_id.name"/></u> will require the following adjustments to bring it into conforming Quality at this of Production
+                            </p>
+                        </div>
+
+                        <div class="mb-4">
+                            <span t-field="o.request_details"/>
+                        </div>
+
+                        <div class="mb-4">
+                            <p>Authorised by</p>
+                            <table style="margin-left: 50px;">
+                                <tr>
+                                    <td>Sign : </td>
+                                    <td style="border-bottom: 1px solid black; min-width: 200px; text-align: center; padding-left: 10px; padding-right: 10px;">
+                                        <span t-field="o.authorized_user_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: center;">Q.C Manager</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="mb-2">
+                            <p>Following Raw Material are required to carry out the above adjustments</p>
+                        </div>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="vertical-align: middle;">Code No.</th>
+                                    <th rowspan="2" style="vertical-align: middle;">Raw Material Description</th>
+                                    <th colspan="4" class="text-center">Quantity</th>
+                                </tr>
+                                <tr>
+                                    <th>Packing</th>
+                                    <th>Number</th>
+                                    <th>Part</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids" t-as="line">
+                                    <td><span t-field="line.product_code"/></td>
+                                    <td><span t-field="line.product_id.name"/></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <span t-field="line.quantity"/> <span t-field="line.uom_id.name"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <p>Authorised by :</p>
+                                <br/>
+                                <div style="border-top: 1px solid black; width: 80%;"></div>
+                                <p class="text-center" style="width: 80%;">Q.C Manager</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Checked by :</p>
+                                <br/>
+                                <div style="border-top: 1px solid black; width: 80%;"></div>
+                                <p class="text-center" style="width: 80%;">Warehouse Supervisor</p>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <p>Prepared by :</p>
+                                <br/>
+                                <div style="border-top: 1px solid black; width: 80%;"></div>
+                                <p class="text-center" style="width: 80%;">Warehouse Batcher</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Noted by :</p>
+                                <br/>
+                                <div style="border-top: 1px solid black; width: 80%;"></div>
+                                <p class="text-center" style="width: 80%;">Production Supervisor</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
